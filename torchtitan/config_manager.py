@@ -182,6 +182,12 @@ class JobConfig:
             default="./torchtitan/datasets/tokenizer/tokenizer.model",
             help="Tokenizer path",
         )
+        self.parser.add_argument(
+            "--model.causal_attention",
+            type=bool,
+            default=True,
+            help="Using causal_attention or not",
+        )
 
         # optimizer configs
         self.parser.add_argument(
@@ -238,6 +244,12 @@ class JobConfig:
             type=int,
             default=10000,
             help="How many train steps to run",
+        )
+        self.parser.add_argument(
+            "--training.grad_accum_steps",
+            type=int,
+            default=1,
+            help="How many gradient accumulation steps to run",
         )
         self.parser.add_argument(
             "--training.data_parallel_replicate_degree",

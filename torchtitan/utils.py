@@ -271,7 +271,7 @@ def get_num_params(model: torch.nn.Module, exclude_embedding: bool = False) -> i
     return num_params
 
 
-def get_num_flop_per_token(num_params: int, model_config, seq_len) -> int:
+def get_num_flop_per_token(num_params: int, model_config, seq_len, consider_causal: bool = False) -> int:
     l, h, q, t = (
         model_config.n_layers,
         model_config.n_heads,
@@ -284,7 +284,8 @@ def get_num_flop_per_token(num_params: int, model_config, seq_len) -> int:
     #    but recomputation should not be counted in calculating MFU           (+0)
     # 3. each matmul performs 1 multiplication and 1 addition                 (*2)
     # 4. we follow the convention and do not account for sparsity in causal attention
-    flop_per_token = 6 * num_params + 12 * l * h * q * t
+    density = 0.5 if consider_causal else 1.0
+    flop_per_token = 6 * num_params + 12 * l * h * q * t * density
 
     return flop_per_token
 

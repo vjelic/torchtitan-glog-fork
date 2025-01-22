@@ -121,6 +121,7 @@ def main(job_config: JobConfig):
         utils.get_num_params(model, exclude_embedding=True),
         model_config,
         job_config.training.seq_len,
+        job_config.model.causal_attention,
     )
     logger.info(
         f"{color.blue}Model {model_name} {job_config.model.flavor} "
@@ -325,9 +326,10 @@ def main(job_config: JobConfig):
             float8_handler.sync_float8_amax_and_scale_history(model_parts)
 
             # optimizer step
-            checkpoint.maybe_wait_for_staging()
-            optimizers.step()
-            lr_schedulers.step()
+            if train_state.step>0 and train_state.step % job_config.training.steps==0:            
+                checkpoint.maybe_wait_for_staging()
+                optimizers.step()
+                lr_schedulers.step()
 
             # calculate float8 dynamic amax/scale for all-parameter for FSDP2
             # it issues a single all-reduce for all parameters at once for better performance
@@ -372,11 +374,12 @@ def main(job_config: JobConfig):
                 time_data_loading_pct = 100 * sum(data_loading_times) / time_delta
 
                 device_mem_stats = device_memory_monitor.get_peak_stats()
-
+                tflops = num_flop_per_token * tps/1e12
                 metrics = {
                     "loss_metrics/global_avg_loss": global_avg_loss,
                     "loss_metrics/global_max_loss": global_max_loss,
-                    "throughput(tps)": tps,
+                    "TFLOPs/GPU/sec": tflops,
+                    "Tokens/GPU/sec": tps,
                     "mfu(%)": mfu,
                     "time_metrics/end_to_end(s)": time_end_to_end,
                     "time_metrics/data_loading(s)": time_data_loading,
@@ -396,6 +399,7 @@ def main(job_config: JobConfig):
                     f"{color.yellow}memory: {device_mem_stats.max_reserved_gib:5.2f}GiB"
                     f"({device_mem_stats.max_reserved_pct:.2f}%)  "
                     f"{color.blue}tps: {round(tps):,}  "
+                    f"{color.purple}tflops: {round(tflops):,}  "
                     f"{color.magenta}mfu: {mfu:.2f}%{color.reset}"
                 )
 
