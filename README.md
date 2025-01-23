@@ -64,14 +64,30 @@ You may want to see how the model is defined or how parallelism techniques are a
 * [torchtitan/float8.py](torchtitan/float8.py) - utils for applying Float8 techniques
 * [torchtitan/models/llama/model.py](torchtitan/models/llama/model.py) - the Llama 3.1 model definition
 
+## Launch the training
 
-## Installation
+### Prepare the docker
+```bash
+docker pull rocm/training:20250116
+```
+
+### Launch the docker
+
+```bash
+docker run -it --device /dev/dri --device /dev/kfd \
+        --network host --ipc host --group-add video \
+        --cap-add SYS_PTRACE --security-opt seccomp=unconfined \
+        --privileged  -v $HOME:$HOME -v  $HOME/.ssh:/root/.ssh  \
+        --shm-size 64G --name llama_70B \
+        rocm/training:20250116
+```
+
+### Installation
 
 ```bash
 git clone https://github.com/pytorch/torchtitan
 cd torchtitan
 pip install -r requirements.txt
-pip3 install --pre torch --index-url https://download.pytorch.org/whl/nightly/cu124 --force-reinstall
 ```
 
 ### Downloading a tokenizer
@@ -84,14 +100,14 @@ Once you have confirmed access, you can run the following command to download th
 # Get your HF token from https://huggingface.co/settings/tokens
 
 # Llama 3.1 tokenizer.model
-python torchtitan/datasets/download_tokenizer.py --repo_id meta-llama/Meta-Llama-3.1-8B --tokenizer_path "original" --hf_token=...
+python torchtitan/datasets/download_tokenizer.py --repo_id meta-llama/Meta-Llama-3.1-70B --tokenizer_path "original" --hf_token=...
 ```
 
 ### Start a training run
-Llama 3 8B model locally on 8 GPUs
+Llama 3.1 70B model locally on 8 GPUs
 
 ```bash
-CONFIG_FILE="./train_configs/llama3_8b.toml" ./run_llama_train.sh
+CONFIG_FILE="./train_configs/llama3_70b.toml" ./run_llama_train.sh
 ```
 
 ### Multi-Node Training
