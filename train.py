@@ -399,7 +399,7 @@ def main(job_config: JobConfig):
                     f"{color.yellow}memory: {device_mem_stats.max_reserved_gib:5.2f}GiB"
                     f"({device_mem_stats.max_reserved_pct:.2f}%)  "
                     f"{color.blue}tps: {round(tps):,}  "
-                    f"{color.purple}tflops: {round(tflops):,}  "
+                    f"{color.black}tflops: {round(tflops):,}  "
                     f"{color.magenta}mfu: {mfu:.2f}%{color.reset}"
                 )
 
