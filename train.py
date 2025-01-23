@@ -121,7 +121,6 @@ def main(job_config: JobConfig):
         utils.get_num_params(model, exclude_embedding=True),
         model_config,
         job_config.training.seq_len,
-        job_config.model.causal_attention,
     )
     logger.info(
         f"{color.blue}Model {model_name} {job_config.model.flavor} "
