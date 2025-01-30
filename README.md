@@ -106,6 +106,7 @@ python torchtitan/datasets/download_tokenizer.py --repo_id meta-llama/Meta-Llama
 ### Start a training run
 Llama 3.1 70B model locally on 8 GPUs
 
+Update the training batch size in [train_configs/llama3_70b.toml](./train_configs/llama3_70b.toml) (4 on MI300X and 7 on MI325X)
 ```bash
 CONFIG_FILE="./train_configs/llama3_70b.toml" ./run_llama_train.sh
 ```
