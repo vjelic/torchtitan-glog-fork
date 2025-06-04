@@ -4,14 +4,7 @@
 # This source code is licensed under the BSD-style license found in the
 # LICENSE file in the root directory of this source tree.
 
-from torchtitan.models.llama import llama3_configs, Transformer
 
-models_config = {
-    "llama3": llama3_configs,
-}
-
-model_name_to_cls = {"llama3": Transformer}
-
-model_name_to_tokenizer = {
-    "llama3": "tiktoken",
-}
+# Import the built-in models here so that the corresponding register_model_spec()
+# will be called.
+import torchtitan.models.llama3  # noqa: F401

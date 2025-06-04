@@ -4,20 +4,20 @@
 # This source code is licensed under the BSD-style license found in the
 # LICENSE file in the root directory of this source tree.
 
-import pickle
 from dataclasses import dataclass
-from typing import Any, Callable, Dict, List, Optional
+from typing import Any, Callable
 
 import torch
-from torch.distributed.checkpoint.stateful import Stateful
-from torch.utils.data import IterableDataset
-from torchdata.stateful_dataloader import StatefulDataLoader
-
-from torchtitan.datasets.tokenizer import Tokenizer
-from torchtitan.logging import logger
 
 from datasets import Dataset, load_dataset
 from datasets.distributed import split_dataset_by_node
+from torch.distributed.checkpoint.stateful import Stateful
+from torch.utils.data import IterableDataset
+
+from torchtitan.components.dataloader import ParallelAwareDataloader
+from torchtitan.components.tokenizer import Tokenizer
+from torchtitan.config_manager import JobConfig
+from torchtitan.tools.logging import logger
 
 
 def _load_c4_dataset(dataset_path: str):
@@ -25,7 +25,7 @@ def _load_c4_dataset(dataset_path: str):
     return load_dataset(dataset_path, name="en", split="train", streaming=True)
 
 
-def _process_c4_text(sample: Dict[str, Any]) -> str:
+def _process_c4_text(sample: dict[str, Any]) -> str:
     """Process C4 dataset sample text."""
     return sample["text"]
 
@@ -53,7 +53,7 @@ DATASETS = {
 
 
 def _validate_dataset(
-    dataset_name: str, dataset_path: str = None
+    dataset_name: str, dataset_path: str | None = None
 ) -> tuple[str, Callable, Callable]:
     """Validate dataset name and path."""
     if dataset_name not in DATASETS:
@@ -72,11 +72,11 @@ class HuggingFaceDataset(IterableDataset, Stateful):
     def __init__(
         self,
         dataset_name: str,
-        dataset_path: Optional[str],
+        dataset_path: str | None,
         tokenizer: Tokenizer,
         seq_len: int = 2048,
-        world_size: int = 1,
-        rank: int = 0,
+        dp_rank: int = 0,
+        dp_world_size: int = 1,
         infinite: bool = False,
     ) -> None:
         # Force lowercase for consistent comparison
@@ -88,7 +88,7 @@ class HuggingFaceDataset(IterableDataset, Stateful):
         ds = dataset_loader(path)
 
         self.dataset_name = dataset_name
-        self._data = split_dataset_by_node(ds, rank, world_size)
+        self._data = split_dataset_by_node(ds, dp_rank, dp_world_size)
         self._tokenizer = tokenizer
         self.seq_len = seq_len
         self.infinite = infinite
@@ -96,16 +96,18 @@ class HuggingFaceDataset(IterableDataset, Stateful):
 
         # Variables for checkpointing
         self._sample_idx = 0
-        self._all_tokens: List[int] = []
+        self._token_buffer: list[int] = []
 
     def _get_data_iter(self):
-        if self._sample_idx == 0:
-            return iter(self._data)
+        # For map-style datasets, resume by skipping to the correct index
+        # For iterable-style datasets, the underlying iterator already points to the correct index
+        if isinstance(self._data, Dataset):
+            if self._sample_idx == len(self._data):
+                return iter([])
+            else:
+                return iter(self._data.skip(self._sample_idx))
 
-        if isinstance(self._data, Dataset) and self._sample_idx == len(self._data):
-            return iter([])
-
-        return iter(self._data.skip(self._sample_idx))
+        return iter(self._data)
 
     def __iter__(self):
         max_buffer_token_len = 1 + self.seq_len
@@ -115,16 +117,16 @@ class HuggingFaceDataset(IterableDataset, Stateful):
                 # Use the dataset-specific text processor
                 sample_text = self._text_processor(sample)
                 sample_tokens = self._tokenizer.encode(sample_text, bos=True, eos=True)
-                self._all_tokens.extend(sample_tokens)
+                self._token_buffer.extend(sample_tokens)
                 self._sample_idx += 1
 
-                while len(self._all_tokens) >= max_buffer_token_len:
-                    x = torch.LongTensor(self._all_tokens[:max_buffer_token_len])
+                while len(self._token_buffer) >= max_buffer_token_len:
+                    x = torch.LongTensor(self._token_buffer[:max_buffer_token_len])
                     # update tokens to the remaining tokens
-                    self._all_tokens = self._all_tokens[max_buffer_token_len:]
+                    self._token_buffer = self._token_buffer[max_buffer_token_len:]
                     input = x[:-1]
                     label = x[1:]
-                    yield input, label
+                    yield {"input": input}, label
 
             if not self.infinite:
                 logger.warning(f"Dataset {self.dataset_name} has run out of data")
@@ -133,54 +135,61 @@ class HuggingFaceDataset(IterableDataset, Stateful):
                 # Reset offset for the next iteration
                 self._sample_idx = 0
                 logger.warning(f"Dataset {self.dataset_name} is being re-looped")
+                # Ensures re-looping a dataset loaded from a checkpoint works correctly
+                if not isinstance(self._data, Dataset):
+                    if hasattr(self._data, "set_epoch") and hasattr(
+                        self._data, "epoch"
+                    ):
+                        self._data.set_epoch(self._data.epoch + 1)
 
     def load_state_dict(self, state_dict):
-        self._sample_idx = state_dict["sample_idx"]
-        self._all_tokens = state_dict["token_buffer"]
+        self._token_buffer = state_dict["token_buffer"]
+
+        if isinstance(self._data, Dataset):
+            self._sample_idx = state_dict["sample_idx"]
+        else:
+            assert "data" in state_dict
+            self._data.load_state_dict(state_dict["data"])
 
     def state_dict(self):
-        return {"token_buffer": self._all_tokens, "sample_idx": self._sample_idx}
+        _state_dict = {"token_buffer": self._token_buffer}
+
+        if isinstance(self._data, Dataset):
+            _state_dict["sample_idx"] = self._sample_idx
+        else:
+            # Save the iterable dataset's state to later efficiently resume from it
+            # https://huggingface.co/docs/datasets/v3.5.0/en/stream#save-a-dataset-checkpoint-and-resume-iteration
+            _state_dict["data"] = self._data.state_dict()
+
+        return _state_dict
 
 
-class DPAwareDataLoader(StatefulDataLoader, Stateful):
-    """
-    A wrapper around the StatefulDataLoader that ensures that the state is stored only once per DP rank.
-    """
-
-    def __init__(self, dp_rank: int, hf_ds: IterableDataset, batch_size: int):
-        super().__init__(hf_ds, batch_size)
-        self._dp_rank = dp_rank
-        self._rank_id = f"dp_rank_{dp_rank}"
-
-    def state_dict(self) -> Dict[str, Any]:
-        # Store state only for dp rank to avoid replicating the same state across other dimensions
-        return {self._rank_id: pickle.dumps(super().state_dict())}
-
-    def load_state_dict(self, state_dict: Dict[str, Any]) -> None:
-        # State being empty is valid
-        if not state_dict:
-            return
-
-        if self._rank_id not in state_dict:
-            logger.warning(
-                f"DataLoader state is empty for dp rank {self._dp_rank}, expected key {self._rank_id}"
-            )
-            return
-        super().load_state_dict(pickle.loads(state_dict[self._rank_id]))
-
-
-def build_hf_data_loader(
-    dataset_name: str,
-    dataset_path: Optional[str],
+def build_hf_dataloader(
+    dp_world_size: int,
+    dp_rank: int,
     tokenizer: Tokenizer,
-    batch_size: int,
-    seq_len: int,
-    world_size: int,
-    rank: int,
+    job_config: JobConfig,
     infinite: bool = True,
-):
+) -> ParallelAwareDataloader:
     """Build a data loader for HuggingFace datasets."""
+    dataset_name = job_config.training.dataset
+    dataset_path = job_config.training.dataset_path
+    batch_size = job_config.training.batch_size
+    seq_len = job_config.training.seq_len
+
     hf_ds = HuggingFaceDataset(
-        dataset_name, dataset_path, tokenizer, seq_len, world_size, rank, infinite
+        dataset_name=dataset_name,
+        dataset_path=dataset_path,
+        tokenizer=tokenizer,
+        seq_len=seq_len,
+        dp_rank=dp_rank,
+        dp_world_size=dp_world_size,
+        infinite=infinite,
     )
-    return DPAwareDataLoader(rank, hf_ds, batch_size=batch_size)
+
+    return ParallelAwareDataloader(
+        dataset=hf_ds,
+        dp_rank=dp_rank,
+        dp_world_size=dp_world_size,
+        batch_size=batch_size,
+    )

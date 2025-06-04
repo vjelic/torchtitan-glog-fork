@@ -17,7 +17,7 @@ For more details on motivation, API, and system design, refer to [here](https://
 
 ## FSDP1 <> FSDP2 API Differences
 We go over some API differences between FSDP1 and FSDP2. Overall, we hope to minimize the API surface (including the number of arguments) to avoid having a monolithic API.
-```
+```python
 @contract(state_cls=FSDPState)
 def fully_shard(
   module: nn.Module,
@@ -38,13 +38,14 @@ def fully_shard(
 | `auto_wrap_policy` | removed |
 | `backward_prefetch` | removed |
 | `mixed_precision` | `mp_policy` |
-| `ignored_modules`/`ignored_states` | not yet implemented |
 | `param_init_fn` | removed |
 | `device_id` | removed |
 | `sync_module_states` | removed |
 | `forward_prefetch` | not yet implemented |
 | `limit_all_gathers` | removed |
 | `use_orig_params` | removed |
+| `no_sync` | `set_requires_gradient_sync` |
+| `ignored_modules`, `ignored_states` | `ignored_params` |
 
 - `fully_shard(module)` is similar to `FullyShardedDataParallel(module)`, constructing one communication bucket from `module.parameters()` except those already assigned to a nested `fully_shard`/`FullyShardedDataParallel` call.
     - `fully_shard(module)` adds an `FSDPState` object on `module`, accessible via `fully_shard.state(module)`, instead of being an `nn.Module` wrapper. This is done via the `@contract` decorator.
@@ -71,7 +72,7 @@ def fully_shard(
   - FSDP2 always moves managed parameters/buffers to the `mesh`'s corresponding device, removing the need for `device_id`. For example, if `mesh.device_type` is `"cuda"`, then FSDP2 uses the current CUDA device.
   - FSDP2 uses a new memory management system that preserves communication/computation overlap while achieving deterministic and lower memory usage than FSDP1. This system does not require any CPU synchronization, so there is no need for `limit_all_gathers`.
   - FSDP2 always "uses the original parameters" since there is no more `FlatParameter`, removing the need for `use_orig_params`.
-- How to implement `ignored_modules`/`ignored_states` and `forward_prefetch` in FSDP2 is under discussion.
+- How to implement `forward_prefetch` in FSDP2 is under discussion.
 
 | FSDP1 | FSDP2 |
 | ----- | ----- |
@@ -84,7 +85,7 @@ def fully_shard(
 
 ## Meta-Device Initialization
 Before with FSDP1:
-```
+```python
 from torch.distributed.fsdp import FullyShardedDataParallel as FSDP
 with torch.device("meta"):
     model = Transformer()
@@ -96,7 +97,7 @@ def param_init_fn(module: nn.Module) -> None: ...
 model = FSDP(model, auto_wrap_policy=policy, param_init_fn=param_init_fn)
 ```
 After with FSDP2:
-```
+```python
 with torch.device("meta"):
     model = Transformer()
 for module in model.modules():

@@ -17,23 +17,21 @@ import torch
 import torch.distributed.checkpoint as dcp
 import torch.nn as nn
 from torch.distributed import DeviceMesh
-from torch.distributed._tensor import Replicate
 from torch.distributed.elastic.multiprocessing.errors import record
+from torch.distributed.tensor import Replicate
 from torch.distributed.tensor.parallel import (
     ColwiseParallel,
     parallelize_module,
     RowwiseParallel,
 )
+from torchtitan.components.metrics import build_device_memory_monitor
 
-from torchtitan import utils
-
-from torchtitan.config_manager import JobConfig
-from torchtitan.datasets import build_tokenizer
-from torchtitan.logging import init_logger, logger
-from torchtitan.metrics import build_device_memory_monitor
-from torchtitan.models import model_name_to_cls, model_name_to_tokenizer, models_config
-from torchtitan.parallelisms import ParallelDims
-from torchtitan.utils import device_module, device_type
+from torchtitan.config_manager import ConfigManager
+from torchtitan.distributed import ParallelDims, utils as dist_utils
+from torchtitan.protocols.train_spec import get_train_spec
+from torchtitan.tools import utils
+from torchtitan.tools.logging import init_logger, logger
+from torchtitan.tools.utils import device_module, device_type
 
 # support running w/o installing as package
 wd = Path(__file__).parent.parent.resolve()
@@ -87,9 +85,8 @@ def test_generate(
     color = utils.Color
 
     # Load configuration from toml file
-    config = JobConfig()
-    config.parse_args([f"--job.config_file={config_path}"])
-    config._validate_config()
+    config_manager = ConfigManager()
+    config = config_manager.parse_args([f"--job.config_file={config_path}"])
 
     if len(args.prompt) == 0:
         logger.warning(
@@ -102,30 +99,26 @@ def test_generate(
     device_module.set_device(device)
     device_memory_monitor = build_device_memory_monitor()
 
-    model_name = config.model.name
+    train_spec = get_train_spec(config.model.name)
 
     logger.info(f"World Size: {world_size}, Local Rank: {local_rank} on {device}")
 
     # Tokenizer setup
-    tokenizer = build_tokenizer(
-        model_name_to_tokenizer[model_name], config.model.tokenizer_path
-    )
+    tokenizer = train_spec.build_tokenizer_fn(config)
 
-    model_config = models_config[model_name][config.model.flavor]
-    model_config.norm_type = config.model.norm_type
-    model_config.max_seq_len = config.training.seq_len
-    model_config.vocab_size = tokenizer.n_words
+    model_cls = train_spec.cls
+    model_args = train_spec.config[config.model.flavor]
+    model_args.update_from_config(config, tokenizer)
 
-    model_cls = model_name_to_cls[model_name]
     init_device = "meta" if world_size > 1 else device
     with torch.device(init_device):
         logger.info(f"Init model on init_device: {init_device}")
-        model = model_cls.from_model_args(model_config)
+        model = model_cls.from_model_args(model_args)
 
     world_mesh = None
     # Init distributed env
     if world_size > 1:
-        utils.init_distributed(config)
+        dist_utils.init_distributed(config)
         parallel_dims = ParallelDims(
             dp_replicate=1,
             dp_shard=-1,
@@ -142,7 +135,7 @@ def test_generate(
         # sequences would require https://github.com/pytorch/torchtitan/pull/686
         apply_tp_minus_sp(model, world_mesh["tp"])
 
-    utils.set_determinism(world_mesh, device, seed, deterministic)
+    dist_utils.set_determinism(world_mesh, device, seed, deterministic)
 
     # materalize model
     model.to_empty(device=device_type)
