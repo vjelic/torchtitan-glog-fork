@@ -10,7 +10,377 @@
           "version": "1.0.0",
           "semanticVersion": "1.0.0",
           "informationUri": "https://www.glog.ai",
-          "rules": [],
+          "rules": [
+            {
+              "id": "869d4ce3-8b3b-3b4a-8871-9ead2327d51a",
+              "name": "trailofbits.python.pickles-in-pytorch.pickles-in-pytorch",
+              "shortDescription": {
+                "text": "Opengrep Finding: trailofbits.python.pickles-in-pytorch.pickles-in-pytorch"
+              },
+              "fullDescription": {
+                "text": "Functions reliant on pickle can result in arbitrary code execution.  Consider loading from `state_dict`, using fickling, or switching to a safer serialization method like ONNX"
+              },
+              "defaultConfiguration": {
+                "enabled": true,
+                "level": "error"
+              },
+              "helpUri": "https://semgrep.dev/r/trailofbits.python.pickles-in-pytorch.pickles-in-pytorch",
+              "help": {
+                "text": "Functions reliant on pickle can result in arbitrary code execution.  Consider loading from `state_dict`, using fickling, or switching to a safer serialization method like ONNX\n💎 Enable cross-file analysis and Pro rules for free at sg.run/pro",
+                "markdown": "Functions reliant on pickle can result in arbitrary code execution.  Consider loading from `state_dict`, using fickling, or switching to a safer serialization method like ONNX\n\n#### 💎 Enable cross-file analysis and Pro rules for free at <a href='https://sg.run/pro'>sg.run/pro</a>\n\n<b>References:</b>\n - [Semgrep Rule](https://semgrep.dev/r/trailofbits.python.pickles-in-pytorch.pickles-in-pytorch)\n - [https://blog.trailofbits.com/2021/03/15/never-a-dill-moment-exploiting-machine-learning-pickle-files/](https://blog.trailofbits.com/2021/03/15/never-a-dill-moment-exploiting-machine-learning-pickle-files/)\n"
+              },
+              "properties": {
+                "precision": "very-high",
+                "tags": [
+                  "trailofbits.python.pickles-in-pytorch.pickles-in-pytorch"
+                ]
+              }
+            },
+            {
+              "id": "694c3d30-fbcb-310a-a14a-bb00d38f18c1",
+              "name": "trailofbits.python.pickles-in-pytorch.pickles-in-pytorch",
+              "shortDescription": {
+                "text": "Opengrep Finding: trailofbits.python.pickles-in-pytorch.pickles-in-pytorch"
+              },
+              "fullDescription": {
+                "text": "Functions reliant on pickle can result in arbitrary code execution.  Consider loading from `state_dict`, using fickling, or switching to a safer serialization method like ONNX"
+              },
+              "defaultConfiguration": {
+                "enabled": true,
+                "level": "error"
+              },
+              "helpUri": "https://semgrep.dev/r/trailofbits.python.pickles-in-pytorch.pickles-in-pytorch",
+              "help": {
+                "text": "Functions reliant on pickle can result in arbitrary code execution.  Consider loading from `state_dict`, using fickling, or switching to a safer serialization method like ONNX\n💎 Enable cross-file analysis and Pro rules for free at sg.run/pro",
+                "markdown": "Functions reliant on pickle can result in arbitrary code execution.  Consider loading from `state_dict`, using fickling, or switching to a safer serialization method like ONNX\n\n#### 💎 Enable cross-file analysis and Pro rules for free at <a href='https://sg.run/pro'>sg.run/pro</a>\n\n<b>References:</b>\n - [Semgrep Rule](https://semgrep.dev/r/trailofbits.python.pickles-in-pytorch.pickles-in-pytorch)\n - [https://blog.trailofbits.com/2021/03/15/never-a-dill-moment-exploiting-machine-learning-pickle-files/](https://blog.trailofbits.com/2021/03/15/never-a-dill-moment-exploiting-machine-learning-pickle-files/)\n"
+              },
+              "properties": {
+                "precision": "very-high",
+                "tags": [
+                  "trailofbits.python.pickles-in-pytorch.pickles-in-pytorch"
+                ]
+              }
+            },
+            {
+              "id": "6fe2b30d-8ffe-3435-8649-d181ad62f6de",
+              "name": "resources.rules.missing-image-version",
+              "shortDescription": {
+                "text": "Opengrep Finding: resources.rules.missing-image-version"
+              },
+              "fullDescription": {
+                "text": "Images should be tagged with an explicit version to produce deterministic container images."
+              },
+              "defaultConfiguration": {
+                "enabled": true,
+                "level": "warning"
+              },
+              "help": {
+                "text": "Images should be tagged with an explicit version to produce deterministic container images.\n💎 Enable cross-file analysis and Pro rules for free at sg.run/pro",
+                "markdown": "Images should be tagged with an explicit version to produce deterministic container images.\n\n#### 💎 Enable cross-file analysis and Pro rules for free at <a href='https://sg.run/pro'>sg.run/pro</a>\n\n<b>References:</b>\n - [https://github.com/hadolint/hadolint/wiki/DL3006](https://github.com/hadolint/hadolint/wiki/DL3006)\n"
+              },
+              "properties": {
+                "precision": "very-high",
+                "tags": [
+                  "resources.rules.missing-image-version"
+                ]
+              }
+            },
+            {
+              "id": "054c17b0-c505-3cda-9426-c31fc3fda6f6",
+              "name": "trailofbits.python.pickles-in-pytorch.pickles-in-pytorch",
+              "shortDescription": {
+                "text": "Opengrep Finding: trailofbits.python.pickles-in-pytorch.pickles-in-pytorch"
+              },
+              "fullDescription": {
+                "text": "Functions reliant on pickle can result in arbitrary code execution.  Consider loading from `state_dict`, using fickling, or switching to a safer serialization method like ONNX"
+              },
+              "defaultConfiguration": {
+                "enabled": true,
+                "level": "error"
+              },
+              "helpUri": "https://semgrep.dev/r/trailofbits.python.pickles-in-pytorch.pickles-in-pytorch",
+              "help": {
+                "text": "Functions reliant on pickle can result in arbitrary code execution.  Consider loading from `state_dict`, using fickling, or switching to a safer serialization method like ONNX\n💎 Enable cross-file analysis and Pro rules for free at sg.run/pro",
+                "markdown": "Functions reliant on pickle can result in arbitrary code execution.  Consider loading from `state_dict`, using fickling, or switching to a safer serialization method like ONNX\n\n#### 💎 Enable cross-file analysis and Pro rules for free at <a href='https://sg.run/pro'>sg.run/pro</a>\n\n<b>References:</b>\n - [Semgrep Rule](https://semgrep.dev/r/trailofbits.python.pickles-in-pytorch.pickles-in-pytorch)\n - [https://blog.trailofbits.com/2021/03/15/never-a-dill-moment-exploiting-machine-learning-pickle-files/](https://blog.trailofbits.com/2021/03/15/never-a-dill-moment-exploiting-machine-learning-pickle-files/)\n"
+              },
+              "properties": {
+                "precision": "very-high",
+                "tags": [
+                  "trailofbits.python.pickles-in-pytorch.pickles-in-pytorch"
+                ]
+              }
+            },
+            {
+              "id": "e2ef6d21-6f29-32f1-8dbe-3bce7c1ee256",
+              "name": "trailofbits.python.pickles-in-pytorch.pickles-in-pytorch",
+              "shortDescription": {
+                "text": "Opengrep Finding: trailofbits.python.pickles-in-pytorch.pickles-in-pytorch"
+              },
+              "fullDescription": {
+                "text": "Functions reliant on pickle can result in arbitrary code execution.  Consider loading from `state_dict`, using fickling, or switching to a safer serialization method like ONNX"
+              },
+              "defaultConfiguration": {
+                "enabled": true,
+                "level": "error"
+              },
+              "helpUri": "https://semgrep.dev/r/trailofbits.python.pickles-in-pytorch.pickles-in-pytorch",
+              "help": {
+                "text": "Functions reliant on pickle can result in arbitrary code execution.  Consider loading from `state_dict`, using fickling, or switching to a safer serialization method like ONNX\n💎 Enable cross-file analysis and Pro rules for free at sg.run/pro",
+                "markdown": "Functions reliant on pickle can result in arbitrary code execution.  Consider loading from `state_dict`, using fickling, or switching to a safer serialization method like ONNX\n\n#### 💎 Enable cross-file analysis and Pro rules for free at <a href='https://sg.run/pro'>sg.run/pro</a>\n\n<b>References:</b>\n - [Semgrep Rule](https://semgrep.dev/r/trailofbits.python.pickles-in-pytorch.pickles-in-pytorch)\n - [https://blog.trailofbits.com/2021/03/15/never-a-dill-moment-exploiting-machine-learning-pickle-files/](https://blog.trailofbits.com/2021/03/15/never-a-dill-moment-exploiting-machine-learning-pickle-files/)\n"
+              },
+              "properties": {
+                "precision": "very-high",
+                "tags": [
+                  "trailofbits.python.pickles-in-pytorch.pickles-in-pytorch"
+                ]
+              }
+            },
+            {
+              "id": "aa3095f4-15f4-3ef1-9e9d-085fde97e544",
+              "name": "trailofbits.python.pickles-in-pytorch.pickles-in-pytorch",
+              "shortDescription": {
+                "text": "Opengrep Finding: trailofbits.python.pickles-in-pytorch.pickles-in-pytorch"
+              },
+              "fullDescription": {
+                "text": "Functions reliant on pickle can result in arbitrary code execution.  Consider loading from `state_dict`, using fickling, or switching to a safer serialization method like ONNX"
+              },
+              "defaultConfiguration": {
+                "enabled": true,
+                "level": "error"
+              },
+              "helpUri": "https://semgrep.dev/r/trailofbits.python.pickles-in-pytorch.pickles-in-pytorch",
+              "help": {
+                "text": "Functions reliant on pickle can result in arbitrary code execution.  Consider loading from `state_dict`, using fickling, or switching to a safer serialization method like ONNX\n💎 Enable cross-file analysis and Pro rules for free at sg.run/pro",
+                "markdown": "Functions reliant on pickle can result in arbitrary code execution.  Consider loading from `state_dict`, using fickling, or switching to a safer serialization method like ONNX\n\n#### 💎 Enable cross-file analysis and Pro rules for free at <a href='https://sg.run/pro'>sg.run/pro</a>\n\n<b>References:</b>\n - [Semgrep Rule](https://semgrep.dev/r/trailofbits.python.pickles-in-pytorch.pickles-in-pytorch)\n - [https://blog.trailofbits.com/2021/03/15/never-a-dill-moment-exploiting-machine-learning-pickle-files/](https://blog.trailofbits.com/2021/03/15/never-a-dill-moment-exploiting-machine-learning-pickle-files/)\n"
+              },
+              "properties": {
+                "precision": "very-high",
+                "tags": [
+                  "trailofbits.python.pickles-in-pytorch.pickles-in-pytorch"
+                ]
+              }
+            },
+            {
+              "id": "3bcb9eff-899b-3b95-9ba7-ba6ef3f0944e",
+              "name": "trailofbits.python.pickles-in-pytorch.pickles-in-pytorch",
+              "shortDescription": {
+                "text": "Opengrep Finding: trailofbits.python.pickles-in-pytorch.pickles-in-pytorch"
+              },
+              "fullDescription": {
+                "text": "Functions reliant on pickle can result in arbitrary code execution.  Consider loading from `state_dict`, using fickling, or switching to a safer serialization method like ONNX"
+              },
+              "defaultConfiguration": {
+                "enabled": true,
+                "level": "error"
+              },
+              "helpUri": "https://semgrep.dev/r/trailofbits.python.pickles-in-pytorch.pickles-in-pytorch",
+              "help": {
+                "text": "Functions reliant on pickle can result in arbitrary code execution.  Consider loading from `state_dict`, using fickling, or switching to a safer serialization method like ONNX\n💎 Enable cross-file analysis and Pro rules for free at sg.run/pro",
+                "markdown": "Functions reliant on pickle can result in arbitrary code execution.  Consider loading from `state_dict`, using fickling, or switching to a safer serialization method like ONNX\n\n#### 💎 Enable cross-file analysis and Pro rules for free at <a href='https://sg.run/pro'>sg.run/pro</a>\n\n<b>References:</b>\n - [Semgrep Rule](https://semgrep.dev/r/trailofbits.python.pickles-in-pytorch.pickles-in-pytorch)\n - [https://blog.trailofbits.com/2021/03/15/never-a-dill-moment-exploiting-machine-learning-pickle-files/](https://blog.trailofbits.com/2021/03/15/never-a-dill-moment-exploiting-machine-learning-pickle-files/)\n"
+              },
+              "properties": {
+                "precision": "very-high",
+                "tags": [
+                  "trailofbits.python.pickles-in-pytorch.pickles-in-pytorch"
+                ]
+              }
+            },
+            {
+              "id": "6c4ef608-7208-3d55-925f-06ddff421955",
+              "name": "resources.rules.dlint-catastrophic-redos",
+              "shortDescription": {
+                "text": "Opengrep Finding: resources.rules.dlint-catastrophic-redos"
+              },
+              "fullDescription": {
+                "text": "Regex `$X` may be vulnerable to catastrophic backtracking, which may lead to denial of service attacks. (This rule only matches regex usage, not actual REDoS patterns. For full detection, use Semgrep Pro Engine.)"
+              },
+              "defaultConfiguration": {
+                "enabled": true,
+                "level": "error"
+              },
+              "help": {
+                "text": "Regex `$X` may be vulnerable to catastrophic backtracking, which may lead to denial of service attacks. (This rule only matches regex usage, not actual REDoS patterns. For full detection, use Semgrep Pro Engine.)\n💎 Enable cross-file analysis and Pro rules for free at sg.run/pro",
+                "markdown": "Regex `$X` may be vulnerable to catastrophic backtracking, which may lead to denial of service attacks. (This rule only matches regex usage, not actual REDoS patterns. For full detection, use Semgrep Pro Engine.)\n\n#### 💎 Enable cross-file analysis and Pro rules for free at <a href='https://sg.run/pro'>sg.run/pro</a>\n\n<b>References:</b>\n - [https://r2c.dev/blog/2020/finding-python-redos-bugs-at-scale-using-dlint-and-r2c/](https://r2c.dev/blog/2020/finding-python-redos-bugs-at-scale-using-dlint-and-r2c/)\n - [https://r2c.dev/blog/2020/improving-redos-detection-with-dlint-and-r2c/](https://r2c.dev/blog/2020/improving-redos-detection-with-dlint-and-r2c/)\n"
+              },
+              "properties": {
+                "precision": "very-high",
+                "tags": [
+                  "resources.rules.dlint-catastrophic-redos"
+                ]
+              }
+            },
+            {
+              "id": "c1657c0c-2122-3037-9d37-1843f48cd96e",
+              "name": "resources.rules.dlint-catastrophic-redos",
+              "shortDescription": {
+                "text": "Opengrep Finding: resources.rules.dlint-catastrophic-redos"
+              },
+              "fullDescription": {
+                "text": "Regex `$X` may be vulnerable to catastrophic backtracking, which may lead to denial of service attacks. (This rule only matches regex usage, not actual REDoS patterns. For full detection, use Semgrep Pro Engine.)"
+              },
+              "defaultConfiguration": {
+                "enabled": true,
+                "level": "error"
+              },
+              "help": {
+                "text": "Regex `$X` may be vulnerable to catastrophic backtracking, which may lead to denial of service attacks. (This rule only matches regex usage, not actual REDoS patterns. For full detection, use Semgrep Pro Engine.)\n💎 Enable cross-file analysis and Pro rules for free at sg.run/pro",
+                "markdown": "Regex `$X` may be vulnerable to catastrophic backtracking, which may lead to denial of service attacks. (This rule only matches regex usage, not actual REDoS patterns. For full detection, use Semgrep Pro Engine.)\n\n#### 💎 Enable cross-file analysis and Pro rules for free at <a href='https://sg.run/pro'>sg.run/pro</a>\n\n<b>References:</b>\n - [https://r2c.dev/blog/2020/finding-python-redos-bugs-at-scale-using-dlint-and-r2c/](https://r2c.dev/blog/2020/finding-python-redos-bugs-at-scale-using-dlint-and-r2c/)\n - [https://r2c.dev/blog/2020/improving-redos-detection-with-dlint-and-r2c/](https://r2c.dev/blog/2020/improving-redos-detection-with-dlint-and-r2c/)\n"
+              },
+              "properties": {
+                "precision": "very-high",
+                "tags": [
+                  "resources.rules.dlint-catastrophic-redos"
+                ]
+              }
+            },
+            {
+              "id": "0f4ca1a7-07fa-3a86-9d3b-295fe06d9fcb",
+              "name": "python.lang.security.deserialization.pickle.avoid-pickle",
+              "shortDescription": {
+                "text": "Opengrep Finding: python.lang.security.deserialization.pickle.avoid-pickle"
+              },
+              "fullDescription": {
+                "text": "Avoid using `pickle`, which is known to lead to code execution vulnerabilities. When unpickling, the serialized data could be manipulated to run arbitrary code. Instead, consider serializing the relevant data as JSON or a similar text-based serialization format."
+              },
+              "defaultConfiguration": {
+                "enabled": true,
+                "level": "warning"
+              },
+              "helpUri": "https://semgrep.dev/r/python.lang.security.deserialization.pickle.avoid-pickle",
+              "help": {
+                "text": "Avoid using `pickle`, which is known to lead to code execution vulnerabilities. When unpickling, the serialized data could be manipulated to run arbitrary code. Instead, consider serializing the relevant data as JSON or a similar text-based serialization format.\n💎 Enable cross-file analysis and Pro rules for free at sg.run/pro",
+                "markdown": "Avoid using `pickle`, which is known to lead to code execution vulnerabilities. When unpickling, the serialized data could be manipulated to run arbitrary code. Instead, consider serializing the relevant data as JSON or a similar text-based serialization format.\n\n#### 💎 Enable cross-file analysis and Pro rules for free at <a href='https://sg.run/pro'>sg.run/pro</a>\n\n<b>References:</b>\n - [Semgrep Rule](https://semgrep.dev/r/python.lang.security.deserialization.pickle.avoid-pickle)\n - [https://docs.python.org/3/library/pickle.html](https://docs.python.org/3/library/pickle.html)\n"
+              },
+              "properties": {
+                "precision": "very-high",
+                "tags": [
+                  "python.lang.security.deserialization.pickle.avoid-pickle"
+                ]
+              }
+            },
+            {
+              "id": "eabc109b-d2f4-3764-ba3e-9fb5687a5ff0",
+              "name": "resources.rules.return-not-in-function",
+              "shortDescription": {
+                "text": "Opengrep Finding: resources.rules.return-not-in-function"
+              },
+              "fullDescription": {
+                "text": "`return` only makes sense inside a function"
+              },
+              "defaultConfiguration": {
+                "enabled": true,
+                "level": "warning"
+              },
+              "help": {
+                "text": "`return` only makes sense inside a function\n💎 Enable cross-file analysis and Pro rules for free at sg.run/pro",
+                "markdown": "`return` only makes sense inside a function\n\n#### 💎 Enable cross-file analysis and Pro rules for free at <a href='https://sg.run/pro'>sg.run/pro</a>"
+              },
+              "properties": {
+                "precision": "very-high",
+                "tags": [
+                  "resources.rules.return-not-in-function"
+                ]
+              }
+            },
+            {
+              "id": "b9db6bc5-d3cc-3de1-b198-9b1eb0aec313",
+              "name": "python.lang.security.deserialization.pickle.avoid-pickle",
+              "shortDescription": {
+                "text": "Opengrep Finding: python.lang.security.deserialization.pickle.avoid-pickle"
+              },
+              "fullDescription": {
+                "text": "Avoid using `pickle`, which is known to lead to code execution vulnerabilities. When unpickling, the serialized data could be manipulated to run arbitrary code. Instead, consider serializing the relevant data as JSON or a similar text-based serialization format."
+              },
+              "defaultConfiguration": {
+                "enabled": true,
+                "level": "warning"
+              },
+              "helpUri": "https://semgrep.dev/r/python.lang.security.deserialization.pickle.avoid-pickle",
+              "help": {
+                "text": "Avoid using `pickle`, which is known to lead to code execution vulnerabilities. When unpickling, the serialized data could be manipulated to run arbitrary code. Instead, consider serializing the relevant data as JSON or a similar text-based serialization format.\n💎 Enable cross-file analysis and Pro rules for free at sg.run/pro",
+                "markdown": "Avoid using `pickle`, which is known to lead to code execution vulnerabilities. When unpickling, the serialized data could be manipulated to run arbitrary code. Instead, consider serializing the relevant data as JSON or a similar text-based serialization format.\n\n#### 💎 Enable cross-file analysis and Pro rules for free at <a href='https://sg.run/pro'>sg.run/pro</a>\n\n<b>References:</b>\n - [Semgrep Rule](https://semgrep.dev/r/python.lang.security.deserialization.pickle.avoid-pickle)\n - [https://docs.python.org/3/library/pickle.html](https://docs.python.org/3/library/pickle.html)\n"
+              },
+              "properties": {
+                "precision": "very-high",
+                "tags": [
+                  "python.lang.security.deserialization.pickle.avoid-pickle"
+                ]
+              }
+            },
+            {
+              "id": "b5743099-d254-3ee5-b4f1-f42c3971f88d",
+              "name": "resources.rules.useless-inner-function",
+              "shortDescription": {
+                "text": "Opengrep Finding: resources.rules.useless-inner-function"
+              },
+              "fullDescription": {
+                "text": "function `$FF` is defined inside a function but never used"
+              },
+              "defaultConfiguration": {
+                "enabled": true,
+                "level": "error"
+              },
+              "help": {
+                "text": "function `$FF` is defined inside a function but never used\n💎 Enable cross-file analysis and Pro rules for free at sg.run/pro",
+                "markdown": "function `$FF` is defined inside a function but never used\n\n#### 💎 Enable cross-file analysis and Pro rules for free at <a href='https://sg.run/pro'>sg.run/pro</a>"
+              },
+              "properties": {
+                "precision": "very-high",
+                "tags": [
+                  "resources.rules.useless-inner-function"
+                ]
+              }
+            },
+            {
+              "id": "48af224a-4a32-3931-b064-dc68aa7bbcb5",
+              "name": "resources.rules.arbitrary-sleep",
+              "shortDescription": {
+                "text": "Opengrep Finding: resources.rules.arbitrary-sleep"
+              },
+              "fullDescription": {
+                "text": "time.sleep() call; did you mean to leave this in?"
+              },
+              "defaultConfiguration": {
+                "enabled": true,
+                "level": "error"
+              },
+              "help": {
+                "text": "time.sleep() call; did you mean to leave this in?\n💎 Enable cross-file analysis and Pro rules for free at sg.run/pro",
+                "markdown": "time.sleep() call; did you mean to leave this in?\n\n#### 💎 Enable cross-file analysis and Pro rules for free at <a href='https://sg.run/pro'>sg.run/pro</a>"
+              },
+              "properties": {
+                "precision": "very-high",
+                "tags": [
+                  "resources.rules.arbitrary-sleep"
+                ]
+              }
+            },
+            {
+              "id": "b1632b9c-1340-3a80-8a90-2bc781637637",
+              "name": "python.lang.security.deserialization.pickle.avoid-pickle",
+              "shortDescription": {
+                "text": "Opengrep Finding: python.lang.security.deserialization.pickle.avoid-pickle"
+              },
+              "fullDescription": {
+                "text": "Avoid using `pickle`, which is known to lead to code execution vulnerabilities. When unpickling, the serialized data could be manipulated to run arbitrary code. Instead, consider serializing the relevant data as JSON or a similar text-based serialization format."
+              },
+              "defaultConfiguration": {
+                "enabled": true,
+                "level": "warning"
+              },
+              "helpUri": "https://semgrep.dev/r/python.lang.security.deserialization.pickle.avoid-pickle",
+              "help": {
+                "text": "Avoid using `pickle`, which is known to lead to code execution vulnerabilities. When unpickling, the serialized data could be manipulated to run arbitrary code. Instead, consider serializing the relevant data as JSON or a similar text-based serialization format.\n💎 Enable cross-file analysis and Pro rules for free at sg.run/pro",
+                "markdown": "Avoid using `pickle`, which is known to lead to code execution vulnerabilities. When unpickling, the serialized data could be manipulated to run arbitrary code. Instead, consider serializing the relevant data as JSON or a similar text-based serialization format.\n\n#### 💎 Enable cross-file analysis and Pro rules for free at <a href='https://sg.run/pro'>sg.run/pro</a>\n\n<b>References:</b>\n - [Semgrep Rule](https://semgrep.dev/r/python.lang.security.deserialization.pickle.avoid-pickle)\n - [https://docs.python.org/3/library/pickle.html](https://docs.python.org/3/library/pickle.html)\n"
+              },
+              "properties": {
+                "precision": "very-high",
+                "tags": [
+                  "python.lang.security.deserialization.pickle.avoid-pickle"
+                ]
+              }
+            }
+          ],
           "language": "en-US",
           "contents": [
             "localizedData",
@@ -20,7 +390,504 @@
         }
       },
       "language": "en-US",
-      "results": [],
+      "results": [
+        {
+          "ruleId": "25b40b14-cc60-3b55-9b72-6d4fbe07abf3",
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "Functions reliant on pickle can result in arbitrary code execution.  Consider loading from `state_dict`, using fickling, or switching to a safer serialization method like ONNX"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "scripts/convert_llama_to_dcp.py",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 32,
+                  "startColumn": 9,
+                  "endLine": 32,
+                  "endColumn": 75,
+                  "snippet": {
+                    "text": "        torch.load(ckpt, map_location=\"cpu\", weights_only=True, mmap=True)"
+                  }
+                }
+              }
+            }
+          ],
+          "fingerprints": {
+            "matchBasedId/v1": "86f6bbfc0c9a5549f18c34d4ff3b409d73fe8f243ffdd2f71a2cff409e2b434c92c8823a9cda8a6c84d663eae7dfe2640cc15dd54cfa83e162bc5e1c92fa4cd3_0"
+          },
+          "properties": {}
+        },
+        {
+          "ruleId": "869d4ce3-8b3b-3b4a-8871-9ead2327d51a",
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "Functions reliant on pickle can result in arbitrary code execution.  Consider loading from `state_dict`, using fickling, or switching to a safer serialization method like ONNX"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "torchtitan/checkpoint.py",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 58,
+                  "startColumn": 9,
+                  "endLine": 58,
+                  "endColumn": 68,
+                  "snippet": {
+                    "text": "        torch.save(self.global_max_losses, global_max_losses_bytes)"
+                  }
+                }
+              }
+            }
+          ],
+          "fingerprints": {
+            "matchBasedId/v1": "c8b1546906d1435c0ebc8447aa3af101148f0645d6ca01d79755314b20bc38653f6e8bddfce401ff430c12e88c852ef51dfdfe93a2263622e20ed0ce60391c36_1"
+          },
+          "properties": {}
+        },
+        {
+          "ruleId": "694c3d30-fbcb-310a-a14a-bb00d38f18c1",
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "Functions reliant on pickle can result in arbitrary code execution.  Consider loading from `state_dict`, using fickling, or switching to a safer serialization method like ONNX"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "torchtitan/checkpoint.py",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 56,
+                  "startColumn": 9,
+                  "endLine": 56,
+                  "endColumn": 68,
+                  "snippet": {
+                    "text": "        torch.save(self.global_avg_losses, global_avg_losses_bytes)"
+                  }
+                }
+              }
+            }
+          ],
+          "fingerprints": {
+            "matchBasedId/v1": "c8b1546906d1435c0ebc8447aa3af101148f0645d6ca01d79755314b20bc38653f6e8bddfce401ff430c12e88c852ef51dfdfe93a2263622e20ed0ce60391c36_0"
+          },
+          "properties": {}
+        },
+        {
+          "ruleId": "6fe2b30d-8ffe-3435-8649-d181ad62f6de",
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "Images should be tagged with an explicit version to produce deterministic container images."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": ".ci/docker/ubuntu/Dockerfile",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 3,
+                  "startColumn": 1,
+                  "endLine": 3,
+                  "endColumn": 12,
+                  "snippet": {
+                    "text": "FROM nvidia/cuda:12.4.1-cudnn-runtime-ubuntu${OS_VERSION}"
+                  }
+                }
+              }
+            }
+          ],
+          "fingerprints": {
+            "matchBasedId/v1": "b935337269e6f22c2ccb4c9ac2bdf6d2d697cbc6968e735b17e780bfe8ff09860146c11e6d6b46528ca2dfb5d85c937aec0726c071eda634ac995e66d268f64b_0"
+          },
+          "properties": {}
+        },
+        {
+          "ruleId": "054c17b0-c505-3cda-9426-c31fc3fda6f6",
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "Functions reliant on pickle can result in arbitrary code execution.  Consider loading from `state_dict`, using fickling, or switching to a safer serialization method like ONNX"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "torchtitan/checkpoint.py",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 60,
+                  "startColumn": 9,
+                  "endLine": 60,
+                  "endColumn": 52,
+                  "snippet": {
+                    "text": "        torch.save(self.log_steps, log_steps_bytes)"
+                  }
+                }
+              }
+            }
+          ],
+          "fingerprints": {
+            "matchBasedId/v1": "c8b1546906d1435c0ebc8447aa3af101148f0645d6ca01d79755314b20bc38653f6e8bddfce401ff430c12e88c852ef51dfdfe93a2263622e20ed0ce60391c36_2"
+          },
+          "properties": {}
+        },
+        {
+          "ruleId": "e2ef6d21-6f29-32f1-8dbe-3bce7c1ee256",
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "Functions reliant on pickle can result in arbitrary code execution.  Consider loading from `state_dict`, using fickling, or switching to a safer serialization method like ONNX"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "torchtitan/checkpoint.py",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 79,
+                  "startColumn": 26,
+                  "endLine": 79,
+                  "endColumn": 81,
+                  "snippet": {
+                    "text": "        self.log_steps = torch.load(state_dict[\"log_steps\"], weights_only=False)"
+                  }
+                }
+              }
+            }
+          ],
+          "fingerprints": {
+            "matchBasedId/v1": "c8b1546906d1435c0ebc8447aa3af101148f0645d6ca01d79755314b20bc38653f6e8bddfce401ff430c12e88c852ef51dfdfe93a2263622e20ed0ce60391c36_5"
+          },
+          "properties": {}
+        },
+        {
+          "ruleId": "aa3095f4-15f4-3ef1-9e9d-085fde97e544",
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "Functions reliant on pickle can result in arbitrary code execution.  Consider loading from `state_dict`, using fickling, or switching to a safer serialization method like ONNX"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "torchtitan/checkpoint.py",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 71,
+                  "startColumn": 34,
+                  "endLine": 73,
+                  "endColumn": 10,
+                  "snippet": {
+                    "text": "        self.global_avg_losses = torch.load(\n            state_dict[\"global_avg_losses\"], weights_only=False\n        )"
+                  }
+                }
+              }
+            }
+          ],
+          "fingerprints": {
+            "matchBasedId/v1": "c8b1546906d1435c0ebc8447aa3af101148f0645d6ca01d79755314b20bc38653f6e8bddfce401ff430c12e88c852ef51dfdfe93a2263622e20ed0ce60391c36_3"
+          },
+          "properties": {}
+        },
+        {
+          "ruleId": "3bcb9eff-899b-3b95-9ba7-ba6ef3f0944e",
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "Functions reliant on pickle can result in arbitrary code execution.  Consider loading from `state_dict`, using fickling, or switching to a safer serialization method like ONNX"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "torchtitan/checkpoint.py",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 75,
+                  "startColumn": 34,
+                  "endLine": 77,
+                  "endColumn": 10,
+                  "snippet": {
+                    "text": "        self.global_max_losses = torch.load(\n            state_dict[\"global_max_losses\"], weights_only=False\n        )"
+                  }
+                }
+              }
+            }
+          ],
+          "fingerprints": {
+            "matchBasedId/v1": "c8b1546906d1435c0ebc8447aa3af101148f0645d6ca01d79755314b20bc38653f6e8bddfce401ff430c12e88c852ef51dfdfe93a2263622e20ed0ce60391c36_4"
+          },
+          "properties": {}
+        },
+        {
+          "ruleId": "6c4ef608-7208-3d55-925f-06ddff421955",
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "Regex `r\"step-(\\d+)\"` may be vulnerable to catastrophic backtracking, which may lead to denial of service attacks. (This rule only matches regex usage, not actual REDoS patterns. For full detection, use Semgrep Pro Engine.)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "torchtitan/checkpoint.py",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 416,
+                  "startColumn": 25,
+                  "endLine": 416,
+                  "endColumn": 59,
+                  "snippet": {
+                    "text": "                match = re.search(r\"step-(\\d+)\", filename)"
+                  }
+                }
+              }
+            }
+          ],
+          "fingerprints": {
+            "matchBasedId/v1": "3d2bffc696e665eb8eeefff56e32f2860e0faad1866a48c06982e8d6c4758611a3317bf39724fc672fea8aefcd64c1fd811c89e0ce95a8c9e6caa694ffc5b8cc_0"
+          },
+          "properties": {}
+        },
+        {
+          "ruleId": "c1657c0c-2122-3037-9d37-1843f48cd96e",
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "Regex `r\"step-(\\d+)\"` may be vulnerable to catastrophic backtracking, which may lead to denial of service attacks. (This rule only matches regex usage, not actual REDoS patterns. For full detection, use Semgrep Pro Engine.)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "torchtitan/checkpoint.py",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 453,
+                  "startColumn": 25,
+                  "endLine": 453,
+                  "endColumn": 59,
+                  "snippet": {
+                    "text": "                match = re.search(r\"step-(\\d+)\", filename)"
+                  }
+                }
+              }
+            }
+          ],
+          "fingerprints": {
+            "matchBasedId/v1": "3d2bffc696e665eb8eeefff56e32f2860e0faad1866a48c06982e8d6c4758611a3317bf39724fc672fea8aefcd64c1fd811c89e0ce95a8c9e6caa694ffc5b8cc_1"
+          },
+          "properties": {}
+        },
+        {
+          "ruleId": "0f4ca1a7-07fa-3a86-9d3b-295fe06d9fcb",
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "Avoid using `pickle`, which is known to lead to code execution vulnerabilities. When unpickling, the serialized data could be manipulated to run arbitrary code. Instead, consider serializing the relevant data as JSON or a similar text-based serialization format."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "torchtitan/datasets/hf_datasets.py",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 169,
+                  "startColumn": 33,
+                  "endLine": 169,
+                  "endColumn": 72,
+                  "snippet": {
+                    "text": "        super().load_state_dict(pickle.loads(state_dict[self._rank_id]))"
+                  }
+                }
+              }
+            }
+          ],
+          "fingerprints": {
+            "matchBasedId/v1": "3ff5fe8013e7c7675b5fdfdca250f3cc7e045282068c5cabda0131839ac2c5f494a3c0038d244bc96d084423c35d419d7ce685c2f6d39838834d6d46f354685f_0"
+          },
+          "properties": {}
+        },
+        {
+          "ruleId": "eabc109b-d2f4-3764-ba3e-9fb5687a5ff0",
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "`return` only makes sense inside a function"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "torchtitan/datasets/hf_datasets.py",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 49,
+                  "startColumn": 29,
+                  "endLine": 49,
+                  "endColumn": 62,
+                  "snippet": {
+                    "text": "        loader=lambda path: load_dataset(path, split=\"train\"),"
+                  }
+                }
+              }
+            }
+          ],
+          "fingerprints": {
+            "matchBasedId/v1": "6e9e299dae421c69ee52d2783ac547b9f9b7ff884be6816573cbc54f861ccb1814c33bd3de63cd68966db79c7150c3253abe8e0e588c7c5fb166e61dcaf93d29_0"
+          },
+          "properties": {}
+        },
+        {
+          "ruleId": "b9db6bc5-d3cc-3de1-b198-9b1eb0aec313",
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "Avoid using `pickle`, which is known to lead to code execution vulnerabilities. When unpickling, the serialized data could be manipulated to run arbitrary code. Instead, consider serializing the relevant data as JSON or a similar text-based serialization format."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "torchtitan/datasets/hf_datasets.py",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 157,
+                  "startColumn": 32,
+                  "endLine": 157,
+                  "endColumn": 66,
+                  "snippet": {
+                    "text": "        return {self._rank_id: pickle.dumps(super().state_dict())}"
+                  }
+                }
+              }
+            }
+          ],
+          "fingerprints": {
+            "matchBasedId/v1": "74851b7bb6584bfc689c24eee6b400af0d1ae9f064ff45626fa8e941060dc3c9d92cdc06f6699dbb306668cd5efede93be26c9c4fa97e8e23082beaeae966886_0"
+          },
+          "properties": {}
+        },
+        {
+          "ruleId": "b5743099-d254-3ee5-b4f1-f42c3971f88d",
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "function `trace_handler` is defined inside a function but never used"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "torchtitan/profiling.py",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 36,
+                  "startColumn": 9,
+                  "endLine": 47,
+                  "endColumn": 14,
+                  "snippet": {
+                    "text": "        def trace_handler(prof):\n            curr_trace_dir_name = \"iteration_\" + str(prof.step_num)\n            curr_trace_dir = os.path.join(trace_dir, curr_trace_dir_name)\n            if not os.path.exists(curr_trace_dir):\n                os.makedirs(curr_trace_dir, exist_ok=True)\n\n            logger.info(f\"Dumping profiler traces at step {prof.step_num}\")\n            begin = time.monotonic()\n            prof.export_chrome_trace(f\"{curr_trace_dir}/rank{rank}_trace.json\")\n            logger.info(\n                f\"Finished dumping profiler traces in {time.monotonic() - begin:.2f} seconds\"\n            )"
+                  }
+                }
+              }
+            }
+          ],
+          "fingerprints": {
+            "matchBasedId/v1": "740d8665901660c01a6fcf11a676954373f1d2e6b294bdc4655f0a002ee054c1cd655c75d0c6083ba36497ff4d6fb2f2993e4ff24c7438ea416ab7909a29d97f_0"
+          },
+          "properties": {}
+        },
+        {
+          "ruleId": "48af224a-4a32-3931-b064-dc68aa7bbcb5",
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "time.sleep() call; did you mean to leave this in?"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "train.py",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 430,
+                  "startColumn": 9,
+                  "endLine": 430,
+                  "endColumn": 22,
+                  "snippet": {
+                    "text": "        time.sleep(2)"
+                  }
+                }
+              }
+            }
+          ],
+          "fingerprints": {
+            "matchBasedId/v1": "069a56777071da6bc04c4b47dd0ee448a987bc488d787e9e7eac5a63eb6f1eedf3d08e940f7f6c168e6ebd72c60dc401ebc9e6afbd84fef2b157f88f453164d7_0"
+          },
+          "properties": {}
+        },
+        {
+          "ruleId": "b1632b9c-1340-3a80-8a90-2bc781637637",
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "Avoid using `pickle`, which is known to lead to code execution vulnerabilities. When unpickling, the serialized data could be manipulated to run arbitrary code. Instead, consider serializing the relevant data as JSON or a similar text-based serialization format."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "torchtitan/profiling.py",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 113,
+                  "startColumn": 21,
+                  "endLine": 113,
+                  "endColumn": 71,
+                  "snippet": {
+                    "text": "                    pickle.dump(torch.cuda.memory._snapshot(), output)"
+                  }
+                }
+              }
+            }
+          ],
+          "fingerprints": {
+            "matchBasedId/v1": "84e82f1d7269cdc033b236af536aa6bc7223fa7a179088f15c289c92e9a4b4b4d49b72a9baaad52b96bc20194b64b3c1beb3827434ed20ef8ec139ade92937f1_0"
+          },
+          "properties": {}
+        }
+      ],
       "newlineSequences": [
         "\r\n",
         "\n"
